@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     const { limit = 100, sortby = 'id', sortdir = 'desc' } = req.query;
 
     db('accounts')
-    .orderBy(sortby, sortdir)
+    .orderBy(sortby, sortdir) // alternative .orderBy(req.query.sortby || 'id', req.query.sortdir || 'desc')
     .limit(limit)
     .then(accounts => {
         res.status(200).json({ accounts })
